@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+//    Go to login screen on click of bottom button in the main activity
     public void onClick(View view) {
         setContentView(R.layout.login_screen);
     }

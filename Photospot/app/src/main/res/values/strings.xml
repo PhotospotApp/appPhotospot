@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name" translatable="true">Photospot</string>
-    <string name="Password_hint" translatable="true">Password</string>
-    <string name="email_hint" translatable="true">E-Mail</string>
-    <string name="log_in" translatable="true">Log in</string>
+    <string name="app_name" translatable="false">Photospot</string>
+    <string name="Password_hint" translatable="true">password</string>
+    <string name="email_hint">email</string>
+    <string name="log_in">Log in</string>
     <string name="goto_login">go to login</string>
 </resources>
