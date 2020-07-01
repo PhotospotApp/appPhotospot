@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Password_hint">wachtwoord</string>
+    <string name="email_hint">email</string>
+    <string name="log_in">Log in</string>
+    <string name="goto_login">ga naar  login</string>
+</resources>

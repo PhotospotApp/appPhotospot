@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="log_in">" Iniciar sesión"</string>
+    <string name="Password_hint">contraseña</string>
+    <string name="email_hint">" correo electrónico"</string>
+    <string name="goto_login">" ir al inicio de sesión"</string>
+</resources>
