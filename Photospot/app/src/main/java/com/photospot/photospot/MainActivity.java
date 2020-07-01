@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
     public Boolean isServicesOK() {
         Log.d(TAG, "isServiesOK: checking google services version");
 
-        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(MainActivity.this);
+        int available = GoogleApiAvailability.getInstance()
+                .isGooglePlayServicesAvailable(MainActivity.this);
 
         if (available == ConnectionResult.SUCCESS) {
             //Everything is fine and the user can make map requests.
@@ -53,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
         else if (GoogleApiAvailability.getInstance().isUserResolvableError(available)) {
             // an error occured but we can resolve it.
             Log.d(TAG, "is ServiccesOK: an error occured but we an fix it");
-            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(MainActivity.this, available, ERROR_DIALOG_REQUEST);
+            Dialog dialog = GoogleApiAvailability.getInstance()
+                    .getErrorDialog(MainActivity.this, available, ERROR_DIALOG_REQUEST);
             dialog.show();
         } else {
             Toast.makeText(this, "You can't make map requests", Toast.LENGTH_SHORT).show();
