@@ -5,5 +5,5 @@
     <string name="email_hint">email</string>
     <string name="log_in">Log in</string>
     <string name="goto_login">go to login</string>
-    <string name="map">Map</string>
+    <string name="map" translatable="false">Map</string>
 </resources>

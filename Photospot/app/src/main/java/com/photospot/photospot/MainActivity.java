@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (isServicesOK()) {
+        if(isServicesOK()){
             init();
         }
     }
@@ -33,38 +33,36 @@ public class MainActivity extends AppCompatActivity {
         btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =  new Intent(MainActivity.this, MapActivity.class);
+                Intent intent = new Intent(MainActivity.this, MapActivity.class);
                 startActivity(intent);
             }
         });
     }
 
+
     // Checks if Google play services is the right version
-    public Boolean isServicesOK() {
-        Log.d(TAG, "isServiesOK: checking google services version");
+    public boolean isServicesOK(){
+        Log.d(TAG, "isServicesOK: checking google services version");
 
-        int available = GoogleApiAvailability.getInstance()
-                .isGooglePlayServicesAvailable(MainActivity.this);
+        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(MainActivity.this);
 
-        if (available == ConnectionResult.SUCCESS) {
-            //Everything is fine and the user can make map requests.
+        if(available == ConnectionResult.SUCCESS){
+            // everything is fine and the user can make map requests
             Log.d(TAG, "isServicesOK: Google Play Services is working");
             return true;
         }
-        else if (GoogleApiAvailability.getInstance().isUserResolvableError(available)) {
-            // an error occured but we can resolve it.
-            Log.d(TAG, "is ServiccesOK: an error occured but we an fix it");
-            Dialog dialog = GoogleApiAvailability.getInstance()
-                    .getErrorDialog(MainActivity.this, available, ERROR_DIALOG_REQUEST);
+        else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+            //an error occured but we can resolve it
+            Log.d(TAG, "isServicesOK: an error occured but we can fix it");
+            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(MainActivity.this, available, ERROR_DIALOG_REQUEST);
             dialog.show();
-        } else {
+        }else{
             Toast.makeText(this, "You can't make map requests", Toast.LENGTH_SHORT).show();
         }
         return false;
     }
 
-
-//    Go to login screen on click of bottom button in the main activity
+    //    Go to login screen on click of bottom button in the main activity
     public void onClick(View view) {
         setContentView(R.layout.login_screen);
     }
