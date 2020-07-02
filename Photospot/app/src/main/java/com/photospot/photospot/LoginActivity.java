@@ -39,14 +39,9 @@ public class LoginActivity extends Activity {
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
 
-        //Getting the background drawable (gradient)
-        backgroundDrawable = findViewById(R.id.root_layout).getBackground();
-
         //Making the background gradient animate
-        backgroundAnimation = (AnimationDrawable) backgroundDrawable;
-        backgroundAnimation.setEnterFadeDuration(10);
-        backgroundAnimation.setExitFadeDuration(4000);
-        backgroundAnimation.start();
+        backgroundDrawable = findViewById(R.id.root_layout).getBackground();
+        Utils.animateGradient(backgroundDrawable, 4000);
 
         findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -3,6 +3,7 @@ package com.photospot.photospot;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -75,6 +76,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mSearchText = (EditText) findViewById(R.id.input_search);
         mGPS = (ImageView) findViewById(R.id.ic_gps);
         mSignOutButton = (Button) findViewById(R.id.sign_out_button);
+
+        //Animating buttons
+        Drawable signOutButtonDrawable = findViewById(R.id.sign_out_button).getBackground();
+        Utils.animateGradient(signOutButtonDrawable, 4000);
+
         getLocationPermission();
 
         // Begin Google Sign In
