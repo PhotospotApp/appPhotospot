@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "304705208193",
+    "firebase_url": "https://sonic-solstice-281909.firebaseio.com",
+    "project_id": "sonic-solstice-281909",
+    "storage_bucket": "sonic-solstice-281909.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:304705208193:android:b2d2057c1c30fe2181f280",
+        "android_client_info": {
+          "package_name": "com.photospot.photospot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "304705208193-h436igum9ibvt3fcusuhs2fl1qsk06te.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.photospot.photospot",
+            "certificate_hash": "def95e5e21edd25a4987dede860cae4f543ac2a2"
+          }
+        },
+        {
+          "client_id": "304705208193-qgmh2ccr19tb0g05llqk369e63nmobna.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtCO64A6FJyWkPIlF1H_EgBB-UbgjycCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "304705208193-qgmh2ccr19tb0g05llqk369e63nmobna.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
