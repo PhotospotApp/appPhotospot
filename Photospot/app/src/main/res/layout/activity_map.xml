@@ -37,7 +37,9 @@
             android:hint="@string/searchbar_hint"
             android:textColor="#000"
             android:textSize="15sp"
-            app:layout_constraintLeft_toRightOf="@id/ic_magnify" />
+            app:layout_constraintLeft_toRightOf="@id/ic_magnify"
+            android:imeOptions="actionSearch"
+            android:inputType="text"/>
 
     </RelativeLayout>
 

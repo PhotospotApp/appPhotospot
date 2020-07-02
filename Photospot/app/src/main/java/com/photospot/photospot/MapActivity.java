@@ -114,7 +114,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mSignOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG,"onClick: clicked log out button");
+                Log.d(TAG, "onClick: clicked log out button");
                 signOut();
             }
         });
@@ -176,7 +176,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         if (list.size() > 0) {
             Address address = list.get(0);
 
-            Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, address.getLocality(), Toast.LENGTH_SHORT).show();
 
             moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM,
                     address.getAddressLine(0));
@@ -219,6 +219,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private void moveCamera(@NonNull LatLng latLng, float zoom, String title) {
         Log.d(TAG, "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude);
+        hideSoftKeyboard();
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 
         if (!title.equals("My Location")) {
@@ -226,8 +227,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             MarkerOptions options = new MarkerOptions().position(latLng).title(title);
             mMap.addMarker(options);
         }
-
-        hideSoftKeyboard();
     }
 
     private void getLocationPermission() {
