@@ -6,5 +6,6 @@
     <string name="log_in">Log in</string>
     <string name="goto_login">go to login</string>
     <string name="map" translatable="false">Map</string>
-    <string name="searchbar_hint">Enter Address, City or Zip Code</string>
+    <string name="searchbar_hint" translatable="false">Enter Address, City or Zip Code</string>
+    <string name="sign_out" translatable="false">Sign out</string>
 </resources>
