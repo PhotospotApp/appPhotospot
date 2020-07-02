@@ -3,8 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/root_layout"
+    android:background="@drawable/purple_pink_gradient_animation"
     android:layout_height="match_parent"
-    tools:context=".login_screen">
+    tools:context=".LoginActivity">
 
     <!--    App logo-->
     <ImageView
