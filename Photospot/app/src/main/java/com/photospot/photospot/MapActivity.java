@@ -43,40 +43,7 @@ import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        Toast.makeText(this, "Map is Ready", Toast.LENGTH_SHORT).show();
-        Log.d(TAG, "onMapReady: map is ready");
-        mMap = googleMap;
-
-        if (mLocationPermissionsGranted) {
-            getDeviceLocation();
-
-            //check for permissions
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
-
-            // go to my location on map
-            mMap.setMyLocationEnabled(true);
-            // Disable the default button it will display because the position is not alterable
-            mMap.getUiSettings().setMyLocationButtonEnabled(false);
-            // getUiSettings has a lot of sick and handy shit. Checkout for later
-
-
-            init();
-        }
-    }
-
     private static final String TAG = "MapActivity";
-
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
@@ -90,6 +57,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private Boolean mLocationPermissionsGranted = false;
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationProviderClient;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_map);
+        mSearchText = (EditText) findViewById(R.id.input_search);
+        mGPS = (ImageView) findViewById(R.id.ic_gps);
+
+        getLocationPermission();
+    }
 
     private void init() {
         Log.d(TAG, "init: initializing");
@@ -119,6 +96,44 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         hideSoftKeyboard();
     }
 
+    private void initMap() {
+        Log.d(TAG, "initMap: initializing map");
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+
+        assert mapFragment != null;
+        mapFragment.getMapAsync(MapActivity.this);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) throws SecurityException {
+
+        try {
+
+            Toast.makeText(this, "Map is Ready", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "onMapReady: map is ready");
+            mMap = googleMap;
+
+            if (mLocationPermissionsGranted) {
+                getDeviceLocation();
+
+                //check for permissions
+                if (!permissionCheck()) {
+                    return;
+                }
+
+                // go to my location on map
+                mMap.setMyLocationEnabled(true);
+                // Disable the default button it will display because the position is not alterable
+                mMap.getUiSettings().setMyLocationButtonEnabled(false);
+                // getUiSettings has a lot of sick and handy shit. Checkout for later
+
+                init();
+            }
+        } catch (SecurityException e) {
+            Log.e(TAG, "SecurityException onMapReady: " + e.getMessage());
+        }
+    }
+
     private void geolocate() {
         Log.d(TAG, "geoLocate: geolocating");
 
@@ -144,17 +159,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
-        mSearchText = (EditText) findViewById(R.id.input_search);
-        mGPS = (ImageView) findViewById(R.id.ic_gps);
-
-
-        getLocationPermission();
-    }
-
     private void getDeviceLocation() {
         Log.d(TAG, "getDeviceLocation: getting the devices current location");
 
@@ -163,19 +167,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         try {
             if (mLocationPermissionsGranted) {
 
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED
-                        && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
+                if (!permissionCheck()) {
                     return;
                 }
+
                 Task location = mFusedLocationProviderClient.getLastLocation();
                 location.addOnCompleteListener(new OnCompleteListener() {
                     @Override
@@ -208,14 +203,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
 
         hideSoftKeyboard();
-    }
-
-    private void initMap() {
-        Log.d(TAG, "initMap: initializing map");
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-
-        assert mapFragment != null;
-        mapFragment.getMapAsync(MapActivity.this);
     }
 
     private void getLocationPermission() {
@@ -258,6 +245,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     }
                     Log.d(TAG, "onRequestPermissionsResult: permission granted");
                     mLocationPermissionsGranted = true;
+
                     //initialize our map
                     initMap();
                 }
@@ -267,5 +255,24 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private void hideSoftKeyboard() {
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+
+    private boolean permissionCheck() {
+        //check for permissions
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+
+            return false;
+        }
+        return true;
     }
 }
