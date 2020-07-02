@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "304705208193-1mrc4kim8gejiu9p1qsart4lc338c1if.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.photospot.photospot",
+            "certificate_hash": "2da43d0e72c2330838efdfd79e5ec7f5b2afcb82"
+          }
+        },
+        {
           "client_id": "304705208193-h436igum9ibvt3fcusuhs2fl1qsk06te.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
