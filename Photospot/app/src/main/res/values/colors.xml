@@ -3,4 +3,12 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    //Transparent color
+    <color name="transparent">#00FFFFFF</color>
+
+    //Gradient colors
+    <color name="photoSpotDarkPurple">#8C26FB</color>
+    <color name="photoSpotLightPurple">#B013E4</color>
+    <color name="photoSpotPink">#D200CF</color>
 </resources>

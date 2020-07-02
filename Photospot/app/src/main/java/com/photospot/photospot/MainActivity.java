@@ -37,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button btnLogin = findViewById(R.id.test_to_login_screen);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -62,8 +71,4 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    //    Go to login screen on click of bottom button in the main activity
-    public void onClick(View view) {
-        setContentView(R.layout.login_screen);
-    }
 }
