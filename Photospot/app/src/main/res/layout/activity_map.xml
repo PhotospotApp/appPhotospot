@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -102,31 +103,5 @@
         </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
-
-    <!--    <androidx.core.widget.NestedScrollView-->
-<!--        android:id="@+id/bottom_sheet"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="350dp"-->
-<!--        android:background="@drawable/bottom_sheet_background"-->
-<!--        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"-->
-<!--        app:behavior_hideable="true"-->
-<!--        app:behavior_peekHeight="55dp">-->
-
-<!--        <View-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="1dp"-->
-<!--            android:background="@android:color/black" />-->
-<!--        -->
-<!--        <include layout="@layout/layout_bottom_sheet"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_height="match_parent"/>-->
-
-
-<!--    </androidx.core.widget.NestedScrollView>-->
-
-
-
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
