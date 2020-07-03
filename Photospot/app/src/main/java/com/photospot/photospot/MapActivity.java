@@ -38,6 +38,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,6 +59,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private EditText mSearchText;
     private ImageView mGPS;
     private Button mSignOutButton;
+    private BottomSheetBehavior bottomSheetBehavior;
+    private TextView numberSpots;
 
     //vars
     private Boolean mLocationPermissionsGranted = false;
@@ -72,13 +75,23 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             startActivity(intent);
         }
 
+        //Setting widgets
         setContentView(R.layout.activity_map);
         mSearchText = (EditText) findViewById(R.id.input_search);
         mGPS = (ImageView) findViewById(R.id.ic_gps);
         mSignOutButton = (Button) findViewById(R.id.sign_out_button);
+        View bottomSheet = findViewById(R.id.bottom_sheet);
+        //Textview In the dragable bottomsheet that states how many spots are near you
+        numberSpots = findViewById(R.id.number_spots);
+
+        //With this object you can set the state of the bottomsheet
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+
+        //Settings for bottomsheet
+        bottomSheetBehavior.setHideable(false);
 
         //Animating buttons
-        Drawable signOutButtonDrawable = findViewById(R.id.sign_out_button).getBackground();
+        Drawable signOutButtonDrawable = mSignOutButton.getBackground();
         Utils.animateGradient(signOutButtonDrawable, 4000);
 
         getLocationPermission();
@@ -266,8 +279,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         switch (requestCode) {
             case LOCATION_PERMISSION_REQUEST_CODE: {
                 if (grantResults.length > 0) {
-                    for (int i = 0; i < grantResults.length; i++) {
-                        if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                    for (int grantResult : grantResults) {
+                        if (grantResult != PackageManager.PERMISSION_GRANTED) {
                             mLocationPermissionsGranted = false;
                             Log.d(TAG, "onRequestPermissionsResult: permission failed");
                             return;

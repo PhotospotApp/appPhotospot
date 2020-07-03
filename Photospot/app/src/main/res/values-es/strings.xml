@@ -4,4 +4,5 @@
     <string name="Password_hint">contraseña</string>
     <string name="email_hint">" correo electrónico"</string>
     <string name="goto_login">" ir al inicio de sesión"</string>
+    <string name="no_photospots_near_you">No photospots near you</string>
 </resources>

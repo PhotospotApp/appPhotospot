@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -13,58 +13,120 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:elevation="10dp"
-        android:id="@+id/relLayout1">
+        android:layout_height="60dp">
+
+        <EditText
+            android:padding="10dp"
+            android:textCursorDrawable="@null"
+            android:id="@+id/input_search"
+            android:layout_width="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/search_bar"
+            android:hint="@string/searchbar_hint"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:layout_centerVertical="true"/>
 
         <ImageView
-            android:id="@+id/ic_magnify"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="110dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:id="@+id/ic_gps"
+            android:src="@drawable/ic_gps"
+            android:layout_centerVertical="true"/>
+
+        <Button
+            android:id="@+id/sign_out_button"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="10dp" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/purple_pink_gradient_animation"
+            android:text="@string/sign_out"
+            android:textColor="#fff" />
 
     </RelativeLayout>
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@id/relLayout1"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:scaleType="centerCrop"
-        android:id="@+id/ic_gps"
-        android:src="@drawable/ic_gps"/>
-
-    <Button
-        android:id="@+id/sign_out_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/purple_pink_gradient_animation"
-        android:textColor="#fff"
-        android:layout_marginEnd="10dp"
-        android:text="@string/sign_out" />
-
-    <EditText
-        android:padding="10dp"
-        android:textCursorDrawable="@null"
-        android:id="@+id/input_search"
+    <LinearLayout
+        android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_margin="10dp"
-        android:layout_height="40dp"
-        android:background="@drawable/search_bar"
-        android:hint="@string/searchbar_hint"
-        android:textColor="#000"
-        android:textSize="15sp"
-        android:imeOptions="actionSearch"
-        android:inputType="text"/>
+        android:layout_height="350dp"
+        android:background="@drawable/bottom_sheet_background"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="55dp"
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/bottom_sheet_drag_line"
+            android:textColor="#000"
+            android:textAlignment="center"
+
+            android:layout_marginStart="120dp"
+            android:layout_marginEnd="120dp" />
+
+        <TextView
+            android:id="@+id/number_spots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_photospots_near_you"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="#000"/>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp">
+
+            <include layout="@layout/layout_bottom_sheet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+    <!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:id="@+id/bottom_sheet"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="350dp"-->
+<!--        android:background="@drawable/bottom_sheet_background"-->
+<!--        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"-->
+<!--        app:behavior_hideable="true"-->
+<!--        app:behavior_peekHeight="55dp">-->
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:background="@android:color/black" />-->
+<!--        -->
+<!--        <include layout="@layout/layout_bottom_sheet"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_height="match_parent"/>-->
+
+
+<!--    </androidx.core.widget.NestedScrollView>-->
+
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
