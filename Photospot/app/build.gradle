@@ -35,9 +35,11 @@ dependencies {
     //Sliding panels
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+    //Places
+    implementation 'com.google.android.libraries.places:places:2.3.0'
 
     //Testing
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
