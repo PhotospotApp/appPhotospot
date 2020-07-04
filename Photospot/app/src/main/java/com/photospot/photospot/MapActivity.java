@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,6 +62,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private Button mSignOutButton;
     private BottomSheetBehavior bottomSheetBehavior;
     private TextView numberSpots;
+    private ImageButton mGoToProfileButton;
 
     //vars
     private Boolean mLocationPermissionsGranted = false;
@@ -81,6 +83,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mGPS = (ImageView) findViewById(R.id.ic_gps);
         mSignOutButton = (Button) findViewById(R.id.sign_out_button);
         View bottomSheet = findViewById(R.id.bottom_sheet);
+        mGoToProfileButton = (ImageButton) findViewById(R.id.goToProfile);
+
         //Textview In the dragable bottomsheet that states how many spots are near you
         numberSpots = findViewById(R.id.number_spots);
 
@@ -135,6 +139,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 Log.d(TAG, "onClick: clicked log out button");
                 signOut();
+            }
+        });
+        mGoToProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: clicked go to profile imageButton");
+//                goToProfile();
             }
         });
 
