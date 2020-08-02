@@ -31,17 +31,29 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     //Authentication
     implementation 'com.google.firebase:firebase-auth:19.3.2'
+    implementation 'com.google.firebase:firebase-core:17.4.4'
     implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
     //Sliding panels
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
     //Places
     implementation 'com.google.android.libraries.places:places:2.3.0'
+    //Analytics
+    implementation 'com.google.firebase:firebase-analytics:17.4.4'
+    //Search
+    implementation 'com.google.firebase:firebase-appindexing:19.1.0'
+    //Cloud
+    //21.4.0 instead of 21.5.0 is chosen because 21.5.0 contains a bug that doens't let the build to be completed.
+    implementation 'com.google.firebase:firebase-firestore:21.4.0'
+    implementation 'com.google.firebase:firebase-functions:19.0.2'
+    implementation 'com.google.firebase:firebase-storage:19.1.1'
+    implementation 'com.google.firebase:firebase-database:19.3.1'
 
     //Testing
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-
 }
+
+apply plugin: 'com.google.gms.google-services'
