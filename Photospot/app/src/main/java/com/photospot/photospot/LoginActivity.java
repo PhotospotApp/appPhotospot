@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +28,6 @@ import java.util.List;
 import static android.content.ContentValues.TAG;
 
 public class LoginActivity extends Activity {
-
     private static final int RC_SIGN_IN = 123;
 
     //    Animations
@@ -120,7 +121,7 @@ public class LoginActivity extends Activity {
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                handleSignInResult(null);
+                handleSignInResult(GoogleSignIn.getSignedInAccountFromIntent(data));
 
                 // ...
             } else {
