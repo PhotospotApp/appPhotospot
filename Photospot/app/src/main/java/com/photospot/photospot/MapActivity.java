@@ -35,10 +35,19 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -164,6 +173,21 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 if (!permissionCheck()) {
                     return;
                 }
+
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                db.collection("markers").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.d(TAG, document.getId() + "=>" + document.getData());
+                            }
+                        } else {
+                            Log.d(TAG, " ERROR GETTING DOCUMENTS.", task.getException());
+                        }
+                    }
+                });
+//                googleMap.addMarker(new MarkerOptions().position(myRef.getDatabase().getReference("markers")));
 
                 // go to my location on map
                 mMap.setMyLocationEnabled(true);
