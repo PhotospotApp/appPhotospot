@@ -46,12 +46,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.LinkedTransferQueue;
 
 import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
 
@@ -180,14 +182,22 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d(TAG, document.getId() + "=>" + document.getData());
+                                try {
+                                    Log.d(TAG, document.getId() + "=>" + document.getData());
+                                    for (String key : document.getData().keySet()) {
+                                        GeoPoint geoPoint = document.getGeoPoint(key);
+                                        assert geoPoint != null;
+                                        googleMap.addMarker(new MarkerOptions().position(new LatLng(geoPoint.getLatitude(), geoPoint.getLongitude())));
+                                    }
+                                } catch (Exception e) {
+                                    Log.e(TAG, "get markers from db: ", e.fillInStackTrace());
+                                }
                             }
                         } else {
                             Log.d(TAG, " ERROR GETTING DOCUMENTS.", task.getException());
                         }
                     }
                 });
-//                googleMap.addMarker(new MarkerOptions().position(myRef.getDatabase().getReference("markers")));
 
                 // go to my location on map
                 mMap.setMyLocationEnabled(true);
