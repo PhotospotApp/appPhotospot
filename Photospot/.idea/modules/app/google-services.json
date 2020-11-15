@@ -1,0 +1,80 @@
+{
+  "project_info": {
+    "project_number": "304705208193",
+    "firebase_url": "https://sonic-solstice-281909.firebaseio.com",
+    "project_id": "sonic-solstice-281909",
+    "storage_bucket": "sonic-solstice-281909.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:304705208193:android:b2d2057c1c30fe2181f280",
+        "android_client_info": {
+          "package_name": "com.photospot.photospot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "304705208193-jkcm9d0u0cq0k855dgkc2pc60t2gnktj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.photospot.photospot",
+            "certificate_hash": "6c0ba996a02c9681b6346287132f45d53be054e4"
+          }
+        },
+        {
+          "client_id": "304705208193-6kjnurp4fgulnehbovnodi42dmeiogo7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.photospot.photospot",
+            "certificate_hash": "9c8d29437d8515d5029efe2e173b87d6ec8dedd1"
+          }
+        },
+        {
+          "client_id": "304705208193-k4egqghssqtjd887esjfpb07l8ka7f4t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.photospot.photospot",
+            "certificate_hash": "b4ae00f45e62f5702623c05a93c7555449ce3a6a"
+          }
+        },
+        {
+          "client_id": "304705208193-1mrc4kim8gejiu9p1qsart4lc338c1if.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.photospot.photospot",
+            "certificate_hash": "2da43d0e72c2330838efdfd79e5ec7f5b2afcb82"
+          }
+        },
+        {
+          "client_id": "304705208193-h436igum9ibvt3fcusuhs2fl1qsk06te.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.photospot.photospot",
+            "certificate_hash": "def95e5e21edd25a4987dede860cae4f543ac2a2"
+          }
+        },
+        {
+          "client_id": "304705208193-qgmh2ccr19tb0g05llqk369e63nmobna.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtCO64A6FJyWkPIlF1H_EgBB-UbgjycCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "304705208193-qgmh2ccr19tb0g05llqk369e63nmobna.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -28,6 +28,7 @@ import androidx.core.content.ContextCompat;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -38,10 +39,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
@@ -53,6 +60,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private static final float DEFAULT_ZOOM = 15f;
+    private static int AUTOCOMPLETE_REQUEST_CODE = 1;
     GoogleSignInClient mGoogleSignInClient;
 
     //widgets
@@ -86,6 +94,23 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         //With this object you can set the state of the bottomsheet
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+
+        // Initialize places
+        Places.initialize(getApplicationContext(), "AIzaSyCNe0I4QngHJ2Zc3WNDXtCmivw2qkbmKSs");
+
+        // Set EditText non focusable
+        mSearchText.setFocusable(false);
+        mSearchText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Initialize place field list
+                List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME);
+                // Create intent
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldList).build(MapActivity.this);
+                // Start activity result
+                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
+            }
+        });
 
         //Settings for bottomsheet
         bottomSheetBehavior.setHideable(false);
@@ -332,5 +357,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         startActivity(intent);
                     }
                 });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // when succes
+                // Initialize place
+                Place place = Autocomplete.getPlaceFromIntent(data);
+                // Set adress on mEditText
+                mSearchText.setText(place.getAddress());
+            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                // When error
+                // Initialize status
+                Status status = Autocomplete.getStatusFromIntent(data);
+                // Display toast
+                Toast.makeText(getApplicationContext(), status.getStatusMessage(), Toast.LENGTH_SHORT).show();
+            }
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }
