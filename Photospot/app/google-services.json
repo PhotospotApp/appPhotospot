@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "304705208193-jkcm9d0u0cq0k855dgkc2pc60t2gnktj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.photospot.photospot",
+            "certificate_hash": "6c0ba996a02c9681b6346287132f45d53be054e4"
+          }
+        },
+        {
+          "client_id": "304705208193-6kjnurp4fgulnehbovnodi42dmeiogo7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.photospot.photospot",
+            "certificate_hash": "9c8d29437d8515d5029efe2e173b87d6ec8dedd1"
+          }
+        },
+        {
           "client_id": "304705208193-k4egqghssqtjd887esjfpb07l8ka7f4t.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

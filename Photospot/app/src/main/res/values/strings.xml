@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name" translatable="false">Photospot</string>
     <string name="google_maps_API_key" translatable="false">AIzaSyCNe0I4QngHJ2Zc3WNDXtCmivw2qkbmKSs</string>
-    <string name="Password_hint" translatable="true">password</string>
-    <string name="email_hint">email</string>
-    <string name="log_in">Log in</string>
-    <string name="goto_login">go to login</string>
+    <string name="Password_hint" translatable="false">password</string>
+    <string name="email_hint" translatable="false">email</string>
+    <string name="log_in" translatable="false">Log in</string>
+    <string name="goto_login" translatable="false">go to login</string>
     <string name="map" translatable="false">Map</string>
     <string name="searchbar_hint" translatable="false">Enter Address, City or Zip Code</string>
     <string name="sign_out" translatable="false">Sign out</string>
