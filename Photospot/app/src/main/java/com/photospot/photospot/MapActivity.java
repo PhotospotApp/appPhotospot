@@ -45,6 +45,8 @@ import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -69,10 +71,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private Button mSignOutButton;
     private BottomSheetBehavior bottomSheetBehavior;
     private TextView numberSpots;
-
+    private FirebaseAuth mAuth;
     //vars
     private Boolean mLocationPermissionsGranted = false;
     private GoogleMap mMap;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -125,6 +128,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
+
+        mAuth = FirebaseAuth.getInstance();
 
         //  Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -348,12 +353,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     private void signOut() {
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+        // Firebase sign out
+        mAuth.signOut();
+        FirebaseAuth.getInstance().signOut();
+        // Google sign out
+        mGoogleSignInClient.signOut().addOnCompleteListener(this,
+                new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Intent intent = new Intent(MapActivity.this, LoginActivity.class);
-                        startActivity(intent);
+                        updateUI(null);
                     }
                 });
     }
