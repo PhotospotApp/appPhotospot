@@ -363,19 +363,18 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                // when succes
                 // Initialize place
-                Place place = Autocomplete.getPlaceFromIntent(data);
-                // Set adress on mEditText
-                mSearchText.setText(place.getAddress());
+                    Place place = Autocomplete.getPlaceFromIntent(data);
+                    mSearchText.setText(place.getAddress());
+                    moveCamera(place.getLatLng(), DEFAULT_ZOOM, place.getId());
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
-                // When error
-                // Initialize status
                 Status status = Autocomplete.getStatusFromIntent(data);
-                // Display toast
                 Toast.makeText(getApplicationContext(), status.getStatusMessage(), Toast.LENGTH_SHORT).show();
+            } else if (resultCode == RESULT_CANCELED) {
+                // The user canceled the operation
             }
-            super.onActivityResult(requestCode, resultCode, data);
+            return;
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
