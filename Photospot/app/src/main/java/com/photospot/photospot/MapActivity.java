@@ -261,13 +261,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-    private void moveCamera(@NonNull LatLng latLng, float zoom, String title) {
+    private void moveCamera(@NonNull LatLng latLng, float zoom, @Nullable String title) {
         Log.d(TAG, "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude);
         hideSoftKeyboard();
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 
         if (!title.equals("My Location")) {
-
             MarkerOptions options = new MarkerOptions().position(latLng).title(title);
             mMap.addMarker(options);
         }
@@ -364,9 +363,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 // Initialize place
+                if (data != null) {
                     Place place = Autocomplete.getPlaceFromIntent(data);
                     mSearchText.setText(place.getAddress());
-                    moveCamera(place.getLatLng(), DEFAULT_ZOOM, place.getId());
+                    moveCamera(place.getLatLng(), DEFAULT_ZOOM, place.getName());
+                }
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
                 Status status = Autocomplete.getStatusFromIntent(data);
                 Toast.makeText(getApplicationContext(), status.getStatusMessage(), Toast.LENGTH_SHORT).show();
