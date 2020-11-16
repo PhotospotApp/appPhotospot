@@ -357,11 +357,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mAuth.signOut();
         FirebaseAuth.getInstance().signOut();
         // Google sign out
-        mGoogleSignInClient.signOut().addOnCompleteListener(this,
-                new OnCompleteListener<Void>() {
+        mGoogleSignInClient.signOut()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        updateUI(null);
+                        Intent intent = new Intent(MapActivity.this, LoginActivity.class);
+                        startActivity(intent);
                     }
                 });
     }
