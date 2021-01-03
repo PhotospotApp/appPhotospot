@@ -1,4 +1,4 @@
-package com.photospot.photospot;
+package com.photospot.photospot.controller;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
