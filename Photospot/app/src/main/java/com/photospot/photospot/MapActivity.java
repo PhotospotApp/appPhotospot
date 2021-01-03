@@ -1,4 +1,4 @@
-package com.photospot.photospot.controller;
+package com.photospot.photospot;
 
 import android.Manifest;
 import android.content.Intent;
@@ -46,8 +46,6 @@ import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.auth.FirebaseAuth;
-import com.photospot.photospot.R;
-import com.photospot.photospot.model.MapModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,9 +55,7 @@ import java.util.List;
 import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
-
-    private MapModel mapModel;
-
+    
     private static final String TAG = "MapActivity";
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
@@ -351,9 +347,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         return true;
     }
 
-//    private boolean isSignedIn() {
-//        return GoogleSignIn.getLastSignedInAccount(MapActivity.this) != null;
-//    }
+    private boolean isSignedIn() {
+        return GoogleSignIn.getLastSignedInAccount(MapActivity.this) != null;
+    }
 
     private void signOut() {
         // Firebase sign out
